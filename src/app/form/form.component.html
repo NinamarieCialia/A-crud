@@ -1,0 +1,29 @@
+<form [formGroup]="contactForm">
+    <div class="mb-3">
+        <label class="form-label">#</label>
+        <input type="number"  class="form-control" [(ngModel)]="contactId" name="id" placeholder="" disabled>
+      </div>
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" formControlName="name"  [(ngModel)]="contactName"  name="name" placeholder="Enter Full Name"  >    
+      <span *ngIf="name && name.invalid && name.touched">Name is Invalid. It Should be more than 5 characters long</span>
+      </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" formControlName="email" [(ngModel)]="contactEmail" name="email"  placeholder="Enter Email" aria-describedby="emailHelp"  >
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      <span *ngIf="email && email.invalid && email.touched">Email is NOT VALID</span>
+      
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Contact Number</label>
+        <input type="text" class="form-control" formControlName="number" [(ngModel)]="contactNumber" placeholder="Enter Contact Number" name="number"  >
+        <span *ngIf="number && number.invalid && number.touched">Number is invalid. It should contain a 11 DIGIT NUMBER!</span>
+    </div>
+      
+    
+    <button class="btn btn-success" (click)="addContact()" [disabled]="contactForm.invalid">Add Contact</button>
+    <app-button color="violet" text="View All Contacts" routerLink="view"></app-button>
+    <app-button color="green" text="Update Contact" (btnClick)="update()"></app-button>
+    
+  </form>
